@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { actorCreationDTO } from "./actors.model";
 import * as Yup from 'yup';
 import DateField from "../forms/DateField";
+import ImageField from "./imageField";
+import MarkdownField from "../forms/MarkDownField";
 export default function FilterMovies(props:actorFormProps){
     return(
         <Formik 
@@ -19,6 +21,10 @@ export default function FilterMovies(props:actorFormProps){
                 <Form>
                     <TextField displayName="Name" field="name"/>
                     <DateField displayName="Date of Birth" field="dateOfBirth"/>
+                    <ImageField displayName="Picture" field="picture"
+                    imageURL={props.model.pictureURL}/>
+                    <MarkdownField displayName="Biography" field="biography"/>
+
                     <Button disabled={formikProps.isSubmitting} type="submit">Save changes</Button>
                     <Link to="/actors" className="btn btn-secondary">Cancel</Link>
                 </Form>
