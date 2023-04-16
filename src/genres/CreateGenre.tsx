@@ -1,15 +1,19 @@
-import { useHistory } from "react-router";
-import Button from "../utilis/Button";
+import GenreForm from "./GenreForm";
 
 export default function CreateGenres(){
-    const history=useHistory();
+    // const history=useHistory();
     return(
         <>
             <h3>Create Genre</h3>
-            <Button onClick={() =>{
-                //..saving in the db
-                history.push('/genres');
-            }}>Save Changes</Button>
+            <GenreForm model={{name:''}}
+            onSubmit={ async value=>{
+                //when the form is posted
+                await new Promise(r=>setTimeout(r,1));
+                console.log(value);
+            }}
+            />
+           
+            
         </>
     )
 }

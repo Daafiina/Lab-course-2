@@ -12,3 +12,9 @@ code {
     monospace;
 }
 
+form > a{
+  margin-left:1rem;
+}
+
+
+
