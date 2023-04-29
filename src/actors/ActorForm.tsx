@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { actorCreationDTO } from "./actors.model";
 import * as Yup from 'yup';
 import DateField from "../forms/DateField";
-import ImageField from "./imageField";
+import ImageField from "../forms/ImageField";
 import MarkdownField from "../forms/MarkDownField";
 export default function FilterMovies(props:actorFormProps){
     return(
