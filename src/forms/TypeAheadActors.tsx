@@ -10,9 +10,8 @@ export default function TypeAheadActors(props: typeAheadActorsProps){
         id:2, name:'Fernando', character:'', picture:'https://cdn.mos.cms.futurecdn.net/Krf8MjtWTqz95vMnLopbtB-1024-80.jpg.webp'
     },
     {
-        id:3, name:'Jesica', character:'', picture:'https://pbs.twimg.com/profile_images/1157880409851432960/9n7HSjC8_400x400.jpg'
+        id:3, name:'Alba', character:'', picture:'https://pbs.twimg.com/profile_images/1157880409851432960/9n7HSjC8_400x400.jpg'
     }]
-
 
     return(
         <>
