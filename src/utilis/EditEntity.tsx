@@ -13,18 +13,30 @@ export default function EditEntity<TCreation,TRead>(
     const [errors, setErrors] = useState<string[]>([]);
     const history=useHistory();
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get(`${props.url}/${id}`)
-        .then((response:AxiosResponse<TRead>)=>{
-            setEntity(props.transform(response.data));
-            
-        })
-    },[id]);
+            .then((response: AxiosResponse<TRead>) => {
+                setEntity(props.transform(response.data));
+            })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
 
-    async function edit(entityToEdit:TCreation) {
-        try{
-            await axios.put(`${props.url}/${id}`,entityToEdit);
+    async function edit(entityToEdit: TCreation) {
+        try {
+            if (props.transformFormData){
+                const formData = props.transformFormData(entityToEdit);
+                await axios({
+                    method: 'put',
+                    url: `${props.url}/${id}`,
+                    data: formData,
+                    headers: {'Content-Type': 'multipart/form-data'}
+                });
+            } else{
+                await axios.put(`${props.url}/${id}`, entityToEdit);
+            }
+            
             history.push(props.indexURL);
+        
         }catch(error){
             console.log(error);
         }
@@ -44,6 +56,7 @@ export default function EditEntity<TCreation,TRead>(
 interface editEntityProps<TCreation,TRead>{
     url:string;
     transform(entity:TRead):TCreation;
+    transformFormData?(model: TCreation): FormData;
     entityName:string;
     indexURL:string;
     children(entity:TCreation,edit:(entity:TCreation)=>void):ReactElement;
