@@ -80,16 +80,16 @@ export default function Pagination(props: paginationProps){
 
 interface linkModel {
     page: number;
-    enabled: boolean;
+    enabled: boolean;//se mundemi me pas button disabled
     text: string;
-    active: boolean;
+    active: boolean;//nese useri eshte ne qat page
 }
 
 interface paginationProps {
     currentPage: number;
     totalAmountOfPages: number;
-    radio: number;
-    onChange(page: number): void;
+    radio: number;//1 after that to display
+    onChange(page: number): void;//buttonat qe i klikojm te paginattion
 }
 
 Pagination.defaultProps = {
