@@ -9,4 +9,5 @@ export interface movieTheaterDTO {
     name: string;
     latitude?: number;
     longitude?: number;
+    
 }

@@ -1,23 +1,110 @@
 import { Field, Form, Formik } from "formik";
 import { genreDTO } from "../genres/genres.model";
 import Button from "../utilis/Button";
+import axios, { AxiosResponse } from "axios";
+import { urlGenres, urlMovies } from "../endpoints";
+import { useEffect, useState } from "react";
+import { response } from "express";
+import { movieDTO } from "./movies.model";
+import MoviesList from "./MoviesList";
+import { useHistory, useLocation } from "react-router";
+import Pagination from "../utilis/Pagination";
 
 export default function FilterMovies(){
     const initialValues:filterMoviesForm={
             title:'',
             genreId:0,
             upcomingReleases:false,
-            inTheatres:false
+            inTheatres:false,
+            page: 1,
+            recordsPerPage: 10
     }
-    const genres:genreDTO[]=[{id:1,name:'Drama'},{id:2,name:'Comedy'}];
+
+    const [genres, setGenres]= useState<genreDTO[]>([]);
+    const [movies, setMovies]= useState<movieDTO[]>([]);
+    const history = useHistory();
+    const query = new URLSearchParams(useLocation().search);
+    const [totalAmountOfPages, setTotalAmountOfPages]=useState(0);
+
+    useEffect(() =>{
+        axios.get(`${urlGenres}/all`)
+        .then((response: AxiosResponse<genreDTO[]>) =>{
+            setGenres(response.data);
+        })
+    }, []);
+
+    useEffect(() =>{
+
+        if(query.get('title')){
+            initialValues.title=query.get('title')!;
+        }
+
+        if(query.get('genreId')){
+            initialValues.genreId=parseInt(query.get('genreId')!, 10);
+        }
+
+        if(query.get('upcomingReleases')){
+            initialValues.upcomingReleases=true;
+        }
+
+        if(query.get('inTheaters')){
+            initialValues.inTheatres=true;
+        }
+
+        if(query.get('page')){
+            initialValues.page=parseInt(query.get('page')!, 10);
+        }
+
+        searchMovies(initialValues);
+    }, [])
+
+    function searchMovies(values: filterMoviesForm){
+        modifyUrl(values);
+        axios.get(`${urlMovies}/filter`, {params: values})
+        .then((response: AxiosResponse<movieDTO[]>)=>{
+            const records = parseInt(response.headers['totalamountofrecords'], 10);
+            setTotalAmountOfPages(Math.ceil(records / values.recordsPerPage)); 
+            setMovies(response.data);
+        })
+    }
+
+    function modifyUrl(values: filterMoviesForm){
+        const queryStrings: string[] = [];
+
+        if(values.title){
+            queryStrings.push(`title=${values.title}`);
+        }
+
+        if(values.genreId !== 0){
+            queryStrings.push(`genreId=${values.genreId}`);
+        }
+
+        if(values.upcomingReleases){
+            queryStrings.push(`upcomingReleases=${values.upcomingReleases}`);
+        }
+
+        if(values.inTheatres){
+            queryStrings.push(`inTheatres=${values.inTheatres}`);
+        }
+
+        queryStrings.push(`page=${values.page}`);
+        history.push(`/movies/filter?${queryStrings.join('&')}`);
+    }
+
+
     return(
         <>
          <h3>Filter Movies</h3>
          <Formik initialValues={initialValues}
-            onSubmit={values=>console.log(values)}>
+            onSubmit={values=> {
+                values.page=1;
+                searchMovies(values);
+            }}
+        >
             {(formikProps)=>(
-                <Form>
-                    <div className="row gx-3 align-items-center">
+                <>
+                    <Form>
+                    <div className="row gx-3 align-items-center mb-3">
                         <div className="col-auto">
                             <input type="text" className="form-control" id="title"
                             placeholder="Title of the movie"
@@ -49,13 +136,29 @@ export default function FilterMovies(){
                         </div>
                         <div className="col-auto">
                             <Button className="btn btn-primary"
-                            onClick={()=>formikProps.submitForm()}>Filter</Button>
+                            onClick={()=>formikProps.submitForm()}
+                            >Filter</Button>
                             <Button className="btn btn-danger ms-3"
-                            onClick={()=>formikProps.setValues(initialValues)}>Clear</Button>
+                            onClick={()=> {
+                                formikProps.setValues(initialValues);
+                                    searchMovies(initialValues);
+                                }}
+                                >Clear</Button>
 
                         </div>
                     </div>
-                </Form>
+                
+                    </Form>
+                    <MoviesList movies={movies} />
+                    <Pagination
+                    totalAmountOfPages={totalAmountOfPages}
+                    currentPage={formikProps.values.page}
+                    onChange={newPage =>{
+                        formikProps.values.page= newPage;
+                        searchMovies(formikProps.values)
+                    }}
+                    />
+                </>
             )}
             </Formik>
         </>
@@ -68,5 +171,6 @@ interface filterMoviesForm{
     genreId:number;
     upcomingReleases:boolean;
     inTheatres:boolean;
-
+    page: number;
+    recordsPerPage: number;
 }

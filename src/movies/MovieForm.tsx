@@ -11,7 +11,8 @@ import MultipleSelector, { multipleSelectorModel } from "../forms/MultipleSelect
 import { genreDTO } from "../genres/genres.model";
 import { useState } from "react";
 import { movieTheaterDTO } from "../movietheaters/movieTheater.model";
-import TypeAheadActors from "../forms/TypeAheadActors";
+//import TypeAheadActors from "../forms/TypeAheadActors";
+import MarkdownField from "../forms/MarkDownField";
 
 export default function MovieForm(props: movieFormProps){
 
@@ -48,12 +49,15 @@ export default function MovieForm(props: movieFormProps){
                 <Form>
                        <TextField displayName="Title" field="title"/>
                        <CheckboxField displayName="In Theaters" field="inTheaters" />
-
-                        <TextField displayName="Trailer" field="trailer"/>
-                        <DateField displayName="Realease Date" field="releaseDate"/>
-                        <ImageField displayName="Poster" field="poster"
+                       <TextField displayName="Trailer" field="trailer"/>
+                       <DateField displayName="Realease Date" field="releaseDate"/>
+                       <ImageField displayName="Poster" field="poster"
                             imageURL={props.model.posterURL} 
                         />
+
+                        <MarkdownField displayName="Summary" field="summary" />
+                        
+
 
                         <MultipleSelector
                             displayName="Genres"
@@ -75,7 +79,7 @@ export default function MovieForm(props: movieFormProps){
                             }}
                         />
 
-                        <TypeAheadActors displayName="Actors" actors={[]} />
+                      
 
                         
                     <Button disabled={formikProps.isSubmitting}type="submit">Save Changes</Button>
