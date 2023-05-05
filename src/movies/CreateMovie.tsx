@@ -40,8 +40,8 @@ export default function CreateMovie(){
 
             history.push(`/movie/${response.data}`);
 
-        }catch(error: any){
-            setErrors(error.response.data);
+        }catch(error){
+            console.log(error);
         }
     }
     
