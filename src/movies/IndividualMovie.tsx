@@ -23,7 +23,7 @@ export default function IndividualMovie(props: movieDTO){
     return(
         <div className={css.div}>
             <Link to={buildLink()}>
-                <img src={props.poster} alt="Poster" />
+                <img alt="Poster" src={props.poster}  />
             </Link>
             
             <p>

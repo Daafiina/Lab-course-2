@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import coordinateDTO from "../utilis/coordinateDTO.model";
 import Map from "../utilis/Map";
+
+
+
 export default function MovieDetails(){
 
     const {id} : any = useParams();
@@ -95,6 +98,7 @@ export default function MovieDetails(){
                 <h2>Showing on</h2>
                 <Map coordinates={transformCoordinates()} readonly={true} />
             </div> : null} 
+
         </div> : <Loading />
     )
 }
