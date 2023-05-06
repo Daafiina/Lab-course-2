@@ -7,6 +7,7 @@ import axios from "axios";
 import { urlMovies } from "../endpoints";
 import AlertContext from "../utilis/AlertContext";
 import {useContext} from "react";
+import Authorized from "../auth/Authorized";
 
 export default function IndividualMovie(props: movieDTO){
 
@@ -29,7 +30,10 @@ export default function IndividualMovie(props: movieDTO){
             <p>
                 <Link to={buildLink()}>{props.title}</Link>
             </p> 
-            <div>
+            <Authorized
+                role="admin"
+                authorized={<>
+                <div>
                 <Link style={{marginRight: '1rem'}} className="btn btn-info"
                     to={`/movies/edit/${props.id}`}
                 >Edit</Link>
@@ -38,6 +42,9 @@ export default function IndividualMovie(props: movieDTO){
                 className="btn btn-danger"
                 >Delete</Button>
             </div>
+                </>}
+            />  
+            
         </div>
     )
 }

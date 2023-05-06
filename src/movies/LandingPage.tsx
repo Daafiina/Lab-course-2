@@ -14,8 +14,6 @@ export default function LandingPage(){
     })
   }, []);
 
-
-    
   
   
     return(
@@ -23,7 +21,6 @@ export default function LandingPage(){
           //loadData();
         }}>
       
-     
 
         <h3>In Theaters</h3>
         <MoviesList movies={movies.inTheaters}/>
