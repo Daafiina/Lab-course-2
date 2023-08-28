@@ -22,7 +22,7 @@ export default function LandingPage(){
         }}>
       
 
-        <h3>In Theaters</h3>
+        <h3 style={{color:'red'}}>In Theaters</h3>
         <MoviesList movies={movies.inTheaters}/>
   
         <h3>Upcoming Realeases</h3>

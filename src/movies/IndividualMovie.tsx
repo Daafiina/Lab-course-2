@@ -23,13 +23,17 @@ export default function IndividualMovie(props: movieDTO){
 
     return(
         <div className={css.div}>
-            <Link to={buildLink()}>
-                <img alt="Poster" src={props.poster}  />
+          <div className={css.moviecontainer}>
+            <Link to={buildLink()} className={css.movielink}>
+                <img alt="Poster" src={props.poster} className={css.movieposter} />
+                <p className={css.movietitle}>{props.title}</p>
             </Link>
+        </div>
+
             
-            <p>
+            {/* <p>
                 <Link to={buildLink()}>{props.title}</Link>
-            </p> 
+            </p>  */}
             <Authorized
                 role="admin"
                 authorized={<>
