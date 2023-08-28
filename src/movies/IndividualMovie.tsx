@@ -6,13 +6,14 @@ import customConfirm from "../utilis/customConfirm";
 import axios from "axios";
 import { urlMovies } from "../endpoints";
 import AlertContext from "../utilis/AlertContext";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import Authorized from "../auth/Authorized";
 
 export default function IndividualMovie(props: movieDTO){
 
     const buildLink = () =>`/movie/${props.id}`
     const customAlert=useContext(AlertContext);
+    const [movie, setMovie] = useState<movieDTO>();
 
     function deleteMovie(){
         axios.delete(`${urlMovies}/${props.id}`)
@@ -28,12 +29,14 @@ export default function IndividualMovie(props: movieDTO){
                 <img alt="Poster" src={props.poster} className={css.movieposter} />
                 <p className={css.movietitle}>{props.title}</p>
             </Link>
+        
+
+        
+                
         </div>
 
             
-            {/* <p>
-                <Link to={buildLink()}>{props.title}</Link>
-            </p>  */}
+  
             <Authorized
                 role="admin"
                 authorized={<>

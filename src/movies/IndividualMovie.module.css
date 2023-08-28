@@ -3,8 +3,8 @@
     flex-wrap: wrap;
     flex-direction:row ;
     align-items: center;
-    margin-right: 5%;
-}
+    margin-right: 3%;
+    margin-left: 4%;}
 
 
 /* styles.css */
@@ -28,8 +28,8 @@
   }
   
   .movieposter {
-    width: 210px;
-    height: 240px;
+    width: 230px;
+    height: 300px;
   }
   
   .movietitle {
@@ -38,6 +38,19 @@
   }
   
   
+  .genreContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .genre {
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
   
   
   
