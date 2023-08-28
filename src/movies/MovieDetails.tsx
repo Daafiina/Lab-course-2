@@ -59,6 +59,19 @@ export default function MovieDetails(){
     return(
         movie ? <div>
             <h2>{movie.title} ({movie.releaseDate.getFullYear()})</h2>
+         
+
+            <div style={{display: 'flex' , marginTop: '1rem'}}>
+                <span style={{display: 'inline-block', marginRight: '1rem'}}>
+                    <img src={movie.poster} 
+                        style={{width: '100%', height: '100%'}}
+                        alt="poster"
+                    />
+                </span>
+                
+            </div>
+
+            {/* Genres */}
             {movie.genres?.map(genre =>
                 <Link key={genre.id} style={{marginRight: '5px'}}
                     className="btn btn-primary btn-sm rounded-pill"
@@ -66,26 +79,19 @@ export default function MovieDetails(){
                 >{genre.name}</Link>
                 )} | {movie.releaseDate.toDateString()}
 
-            <div style={{display: 'flex' , marginTop: '1rem'}}>
-                <span style={{display: 'inline-block', marginRight: '1rem'}}>
-                    <img src={movie.poster} 
-                        style={{width: '225px', height: '315px'}}
-                        alt="poster"
-                    />
-                </span>
-                {movie.trailer ? <div>
+
+            {movie.trailer ? <div>
                     <iframe
                         title="youtube-trailer"
-                        width="560"
-                        height="315"
+                        width="310"
+                        height="180"
                         src={generateEmbeddedVideoURL(movie.trailer)}
                         frameBorder={0}
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>
                 </div> : null}
-            </div>
-
+                
             {movie.summary ? <div style={{marginTop: '1rem'}}>
                 <h3>Summary</h3>
                 <div>

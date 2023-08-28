@@ -82,7 +82,7 @@ export default function MovieForm(props: movieFormProps){
                       
 
                         
-                    <Button /*disabled={formikProps.isSubmitting}*/type="submit">Save Changes</Button>
+                    <Button disabled={formikProps.isSubmitting}type="submit">Save Changes</Button>
                     <Link className="btn btn-secondary" to="/genres">Cancle</Link>
                 </Form>
             )}
