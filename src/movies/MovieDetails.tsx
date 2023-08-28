@@ -57,10 +57,10 @@ export default function MovieDetails(){
 
 
     return(
-        movie ? <div>
-            <h2>{movie.title} ({movie.releaseDate.getFullYear()})</h2>
+        movie ? <div style={{marginTop:'1REM'}}>
+            <h2 style={{fontSize:"2.3rem",padding:"5px" , boxShadow:'0px 1px 15px 5px lightgrey', display:'inline'}}>{movie.title} ({movie.releaseDate.getFullYear()})</h2>
          
-
+        <div style={{display:'flex'}}>
             <div style={{display: 'flex' , marginTop: '1rem'}}>
                 <span style={{display: 'inline-block', marginRight: '1rem'}}>
                     <img src={movie.poster} 
@@ -70,16 +70,25 @@ export default function MovieDetails(){
                 </span>
                 
             </div>
-
-            {/* Genres */}
-            {movie.genres?.map(genre =>
-                <Link key={genre.id} style={{marginRight: '5px'}}
-                    className="btn btn-primary btn-sm rounded-pill"
-                    to={`/movies/filter?genreId=${genre.id}`}
-                >{genre.name}</Link>
-                )} | {movie.releaseDate.toDateString()}
-
-
+            {movie.summary ? <div style={{marginRight: '1%', marginTop:'1%'}}>
+                <h3>Summary</h3>
+                <div>
+                    <ReactMarkdown>{movie.summary}</ReactMarkdown>
+                </div>
+                </div>: null
+            }
+        </div>
+            
+        {/* Genres */}
+        <div className="divvv" style={{marginTop:'1%', marginBottom:'1%'}}>
+                    {movie.genres?.map(genre =>
+                        <Link key={genre.id} style={{marginRight: '5px'}}
+                            className="btn btn-primary btn-sm rounded-pill"
+                            to={`/movies/filter?genreId=${genre.id}`}
+                        >{genre.name}</Link>
+                        )} | {movie.releaseDate.toDateString()}
+            </div>
+        <div style={{display:'flex'}}>
             {movie.trailer ? <div>
                     <iframe
                         title="youtube-trailer"
@@ -91,15 +100,8 @@ export default function MovieDetails(){
                         allowFullScreen
                     ></iframe>
                 </div> : null}
-                
-            {movie.summary ? <div style={{marginTop: '1rem'}}>
-                <h3>Summary</h3>
-                <div>
-                    <ReactMarkdown>{movie.summary}</ReactMarkdown>
-                </div>
-                </div>: null
-            }
-            
+
+        </div>
             {movie.movieTheaters && movie.movieTheaters.length > 0 ? <div>
                 <h2>Showing on</h2>
                 <Map coordinates={transformCoordinates()} readonly={true} />

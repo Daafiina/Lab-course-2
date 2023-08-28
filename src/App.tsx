@@ -32,12 +32,12 @@ function isAdmin(){
     
     <Menu/>
     <div className="container">
-      { <Switch>
+      {/* { <Switch>
         {routes.map(route=><Route key={route.path} path={route.path} exact={route.exact}>
           <route.component/>
         </Route>)}    
-      </Switch> }
-       {/* <Switch>
+      </Switch> } */}
+        <Switch>
         {routes.map(route => (
           <Route
             key={route.path}
@@ -49,7 +49,7 @@ function isAdmin(){
              
             </Route>
         ))}
-      </Switch> */}
+      </Switch>
     </div>
     <footer className="bd-footer py-5 mt-5 bg-dark text-white">
   <div className="container">
