@@ -1,0 +1,56 @@
+.div{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:row ;
+    align-items: center;
+    margin-right: 3%;
+    margin-left: 2%;}
+
+
+/* styles.css */
+.actorcontainer{
+    margin-bottom: 20px; /* Add margin at the bottom to create spacing */
+  }
+  
+  /* Optional: Add margin to the top of the first movie container to avoid spacing at the top */
+  .actorcontainer:first-child {
+    margin-top: 20px;
+  }
+  
+  /* Rest of the styles */
+  .actorlink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .actorposter {
+    width: 230px;
+    height: 300px;
+  }
+  
+  .actorName {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  
+  .genreContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .genre {
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  
+  
+  

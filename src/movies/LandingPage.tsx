@@ -15,7 +15,6 @@ export default function LandingPage(){
   }, []);
 
   
-  
     return(
         <AlertContext.Provider value={() =>{
           //loadData();

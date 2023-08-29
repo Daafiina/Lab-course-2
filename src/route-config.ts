@@ -1,6 +1,7 @@
 import CreateActor from "./actors/CreateActor";
 import EditActor from "./actors/EditActor";
 import IndexActors from "./actors/IndexActors";
+import ActorDetails from './actors/ActorDetails'
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import CreateGenre from "./genres/CreateGenre";
@@ -27,6 +28,7 @@ export const routes = [
     {path: '/actors',component: IndexActors, exact: true,isAdmin:true},
     {path: '/actors/create',component: CreateActor,isAdmin:true},
     {path: '/actors/edit/:id(\\d+)',component: EditActor,isAdmin:true},
+    {path: '/actors/:id(\\d+)', component: ActorDetails},
 
     {path: '/movietheaters',component: IndexMovieTheaters, exact: true,isAdmin:true},
     {path: '/movietheaters/create',component: CreateMovieTheater,isAdmin:true},
