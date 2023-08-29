@@ -42,7 +42,7 @@ export default function Menu(){
           </NavLink>
         </li>
         <Authorized
-          role=""
+          role="Admin"
           authorized={
             <>
               <li className="nav-item">
