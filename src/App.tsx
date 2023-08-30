@@ -37,7 +37,7 @@ function isAdmin(){
           <route.component/>
         </Route>)}    
       </Switch> } */}
-        <Switch>
+       <Switch>
         {routes.map(route => (
           <Route
             key={route.path}

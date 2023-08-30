@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios"
 import { urlMovies } from "../endpoints"
 import { useParams } from "react-router"
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { response } from "express";
 import { movieDTO } from "./movies.model";
 import Loading from "../utilis/Loading";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import coordinateDTO from "../utilis/coordinateDTO.model";
 import Map from "../utilis/Map";
+import Swal from 'sweetalert2'
 
 
 
@@ -24,6 +25,29 @@ export default function MovieDetails(){
             setMovie(response.data);
         })
     }, [id])
+
+    const Swal = require('sweetalert2')
+
+ // Function to handle adding the movie to the wishlist
+ const addToWishlist = () => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+
+    if (!wishlist.some((item: movieDTO) => item.id === movie?.id)) {
+        wishlist.push(movie);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        Swal.fire({
+            icon: 'success',
+            title: 'Movie Added to Wishlist!',
+            html: '<a href="/wishlist" style="text-decoration:none;"><i class="bi bi-eye-fill"></i> View Wishlist</a>'
+          }) 
+        
+        } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Movie is already in the Wishlist!',
+            html: '<a href="/wishlist" style="text-decoration:none;"><i class="bi bi-eye-fill"></i> View Wishlist</a>'
+          })    }
+};
 
     function transformCoordinates(): coordinateDTO[]{
         if(movie?.movieTheaters){
@@ -71,6 +95,8 @@ export default function MovieDetails(){
                 
             </div>
             {movie.summary ? <div style={{marginRight: '1%', marginTop:'1%'}}>
+                 {/* Wishlist button */}
+<button onClick={addToWishlist} style={{backgroundColor:'#0D6EFD', color:'white', border:'none', borderRadius:'20px', padding:'5px 10px 5px 10px'}}>Add to Wishlist  <i className="bi bi-heart-fill text-danger"></i> {/* Bootstrap Heart Icon */}</button>
                 <h3>Summary</h3>
                 <div>
                     <ReactMarkdown>{movie.summary}</ReactMarkdown>
@@ -78,7 +104,8 @@ export default function MovieDetails(){
                 </div>: null
             }
         </div>
-            
+           
+
         {/* Genres */}
         <div className="divvv" style={{marginTop:'1%', marginBottom:'1%'}}>
                     {movie.genres?.map(genre =>
@@ -106,6 +133,8 @@ export default function MovieDetails(){
                 <h2>Showing on</h2>
                 <Map coordinates={transformCoordinates()} readonly={true} />
             </div> : null} 
+
+
 
         </div> : <Loading />
     )

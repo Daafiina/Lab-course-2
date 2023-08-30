@@ -17,7 +17,7 @@ import CreateMovieTheater from "./movietheaters/CreateMovieTheater";
 import EditMovieTheater from "./movietheaters/EditMovieTheater";
 import IndexMovieTheaters from "./movietheaters/IndexMovieTheaters";
 import RedirectToLandingPage from "./utilis/RedirectToLandingPage";
-
+import Wishlist from "./movies/Wishlist";
 export const routes = [
 
 
@@ -33,6 +33,7 @@ export const routes = [
     {path: '/movietheaters',component: IndexMovieTheaters, exact: true,isAdmin:true},
     {path: '/movietheaters/create',component: CreateMovieTheater,isAdmin:true},
     {path: '/movietheaters/edit/:id(\\d+)',component: EditMovieTheater,isAdmin:true},
+    {path:'/wishlist', component:Wishlist},
 
     {path: '/movies/create',component: CreateMovie,isAdmin:true},
     {path: '/movies/edit/:id(\\d+)',component: EditMovie,isAdmin:true},

@@ -41,8 +41,13 @@ export default function Menu(){
             Filter Movies
           </NavLink>
         </li>
+        <li className="">
+                  <NavLink className="nav-link" to="/wishlist">
+                    View Wishlist
+                  </NavLink>
+              </li>
         <Authorized
-          role="Admin"
+          role="admin"
           authorized={
             <>
               <li className="nav-item">
@@ -65,6 +70,7 @@ export default function Menu(){
                   Create a Movie
                 </NavLink>
               </li>
+           
             </>
           }
         />
