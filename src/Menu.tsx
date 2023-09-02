@@ -70,7 +70,11 @@ export default function Menu(){
                   Create a Movie
                 </NavLink>
               </li>
-           
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/Admin">
+                    Admin Dashboard
+                </NavLink>
+              </li>
             </>
           }
         />

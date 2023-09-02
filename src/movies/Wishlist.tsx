@@ -16,8 +16,11 @@ const Wishlist = () => {
     };
 
     return (
-       
-<div className={css.div}>
+
+
+<div >
+<div className='Everything' style={{ background: 'linear-gradient(to right, #0A213E, #295985)', marginLeft: '-8.6%', marginRight: '-8.6%', paddingTop: '2%', paddingBottom: '3%', borderRadius:'0px 0px 100px 100px', marginBottom:'25px'}}><h1 style={{textAlign:'center', color:'white', fontSize:'40px'}}>Your Wishlist</h1></div>
+
     <div className={css.moviecontainer} style={{display:'flex'}}>
         {wishlist.length > 0 ? (
             wishlist.map((item: movieDTO) => (
@@ -27,7 +30,7 @@ const Wishlist = () => {
                         <p className={css.movietitle}>{item.title}</p><br />
                     </Link>
                     <div style={{textAlign:'center'}}>
-                        <button onClick={() => removeFromWishlist(item.id)} style={{backgroundColor:'#dedede', color:'black', border:'0.5px solid darkgrey'}}>Remove from Wishlist</button>
+                        <button onClick={() => removeFromWishlist(item.id)} style={{backgroundColor:'#D8524F', color:'white', border:'none', borderRadius:'5px', padding:'5px'}}>Remove from Wishlist</button>
                     </div>
                 </div>
             ))
@@ -38,7 +41,6 @@ const Wishlist = () => {
         )}
     </div>
 </div>
-
 
 
 
