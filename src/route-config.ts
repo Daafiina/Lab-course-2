@@ -18,8 +18,10 @@ import EditMovieTheater from "./movietheaters/EditMovieTheater";
 import IndexMovieTheaters from "./movietheaters/IndexMovieTheaters";
 import RedirectToLandingPage from "./utilis/RedirectToLandingPage";
 import Wishlist from "./movies/Wishlist";
+import indexAdmin from './AdminPage/indexAdmin'
 export const routes = [
 
+    {path:'/Admin', component: indexAdmin, exact:true, isAdmin:true},
 
     {path: '/genres',component: IndexGenres, exact: true, isAdmin:true},
     {path: '/genres/create',component: CreateGenre, isAdmin:true},
