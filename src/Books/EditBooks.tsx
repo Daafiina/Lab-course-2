@@ -11,12 +11,12 @@ export default function EditBooks() {
   const [book, setBook] = useState<bookCreationDTO>();
   const [errors, setErrors] = useState<string[]>([]);
   const history = useHistory();
-
   useEffect(() => {
     axios
       .get(`${urlBooks}/${id}`)
       .then((response:AxiosResponse<booksDTO>)=>{
         setBook(response.data)
+
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +36,7 @@ export default function EditBooks() {
     <>
       <EditEntity<bookCreationDTO, booksDTO>
         url={urlBooks}
-        entityName="Books"
+        entityName="Book"
         indexURL="/books"
       >
         {(entity, edit) => (

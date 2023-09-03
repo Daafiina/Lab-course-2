@@ -22,9 +22,12 @@ import indexAdmin from './AdminPage/indexAdmin'
 import indexBook from './Books/IndexBooks'
 import CreateBooks from './Books/CreateBooks'
 import EditBooks from './Books/EditBooks'
+import TestBooks from './Books/testBook'
+
 
 export const routes = [
-  { path: '/books/edit/:id(\\d+)', component: EditBooks, isAdmin: true },
+  { path: '/books/edit/:id([0-9a-fA-F]+)', component: EditBooks, isAdmin: true },
+  { path: '/books/editt/:id(\\d+)', component: TestBooks, isAdmin: true },
 
     {path:'/Admin', component: indexAdmin, exact:true, isAdmin:true},
 

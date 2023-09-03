@@ -15,16 +15,16 @@ export default function BookForm(props: BookFormProps) {
                 validationSchema={Yup.object({
                     BookName: Yup.string().required('Book Name is required').max(50, 'Max length is 50 characters'),
                     Author: Yup.string().required('Author is required').max(50, 'Max length is 50 characters'),
-                    publishedDate: Yup.date().required('Published Date is required'), // Match field name
                     BookGenre: Yup.string().required('Genre is required').max(50, 'Max length is 50 characters'),
                 })}
             >
                 {(formikProps) => (
                     <Form>
-                        <TextField field="BookName" displayName="Book Name" />
-                        <TextField field="Author" displayName="Author" />
-                        <DateField displayName="Published Date" field="publishedDate" /> {/* Match field name */}
-                        <TextField field="BookGenre" displayName="Genre" />
+                        <TextField field="bookName" displayName="Book Name" />
+                        <TextField field="author" displayName="Author" />
+                        {/* <DateField displayName="Published Date" field="publishedDate" /> Match field name */}
+
+                        <TextField field="bookGenre" displayName="Genre" />
                         <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
                         <Link className="btn btn-secondary" to="/books">Cancel</Link>
                     </Form>
