@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { urlBooks } from "../endpoints";
 import EditEntity from "../utilis/EditEntity";
-import BookForm from "./BooksForm"; // Assuming you have a BookForm component
+import BookForm from "./BooksEditForm"; // Assuming you have a BookForm component
 import { bookCreationDTO, booksDTO } from "./Books.models";
 
 export default function EditBooks() {

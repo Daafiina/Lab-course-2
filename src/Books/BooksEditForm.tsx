@@ -22,7 +22,7 @@ export default function BookForm(props: BookFormProps) {
                     <Form>
                         <TextField field="bookName" displayName="Book Name" />
                         <TextField field="author" displayName="Author" />
-                       <DateField displayName="Published Date" field="publishedDate" /> 
+                       {/* <DateField displayName="Published Date" field="publishedDate" />  */}
 
                         <TextField field="bookGenre" displayName="Genre" />
                         <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
