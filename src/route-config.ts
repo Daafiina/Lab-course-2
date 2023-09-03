@@ -19,13 +19,22 @@ import IndexMovieTheaters from "./movietheaters/IndexMovieTheaters";
 import RedirectToLandingPage from "./utilis/RedirectToLandingPage";
 import Wishlist from "./movies/Wishlist";
 import indexAdmin from './AdminPage/indexAdmin'
+import indexBook from './Books/IndexBooks'
+import CreateBooks from './Books/CreateBooks'
+import EditBooks from './Books/EditBooks'
+
 export const routes = [
+  { path: '/books/edit/:id(\\d+)', component: EditBooks, isAdmin: true },
 
     {path:'/Admin', component: indexAdmin, exact:true, isAdmin:true},
 
     {path: '/genres',component: IndexGenres, exact: true, isAdmin:true},
     {path: '/genres/create',component: CreateGenre, isAdmin:true},
     {path: '/genres/edit/:id(\\d+)',component: EditGenre, isAdmin:true},
+
+
+    {path:'/books/create', component: CreateBooks},
+    {path:'/books', component: indexBook, isAdmin:true},
 
     {path: '/actors',component: IndexActors, exact: true,isAdmin:true},
     {path: '/actors/create',component: CreateActor,isAdmin:true},
