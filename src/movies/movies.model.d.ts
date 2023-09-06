@@ -12,6 +12,9 @@ export interface movieDTO{
     releaseDate: Date;
     genres: genreDTO[];
     movieTheaters: movieTheaterDTO[];
+    userVote: number;
+    averageVote: number;
+
 }
 
 export interface movieCreationDTO{

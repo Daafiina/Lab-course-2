@@ -1,6 +1,7 @@
 import CreateActor from "./actors/CreateActor";
 import EditActor from "./actors/EditActor";
 import IndexActors from "./actors/IndexActors";
+import IndexUsers from "./auth/IndexUsers";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import CreateGenre from "./genres/CreateGenre";
@@ -9,7 +10,6 @@ import IndexGenres from "./genres/IndexGenres";
 import CreateMovie from "./movies/CreateMovie";
 import EditMovie from "./movies/EditMovie";
 import FilterMovies from "./movies/FilterMovies";
-import IndividualMovie from "./movies/IndividualMovie";
 import LandingPage from "./movies/LandingPage";
 import MovieDetails from "./movies/MovieDetails";
 import CreateMovieTheater from "./movietheaters/CreateMovieTheater";
@@ -39,6 +39,8 @@ export const routes = [
 
     {path: '/register',component: Register},
     {path: '/login',component: Login},
+    {path: '/users',component: IndexUsers,isAdmin:true},
+
 
 
     {path: '/', component: LandingPage,exact: true},

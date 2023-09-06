@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios"
-import { urlMovies } from "../endpoints"
+import { urlMovies, urlRatings } from "../endpoints"
 import { useParams } from "react-router"
 import { useEffect, useState } from "react";
 import { response } from "express";
@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import coordinateDTO from "../utilis/coordinateDTO.model";
 import Map from "../utilis/Map";
+import Ratings from '../utilis/Ratings';
+import Swal from "sweetalert2";
 
 
 
@@ -54,7 +56,11 @@ export default function MovieDetails(){
         return `https://www.youtube.com/embed/${videoId}`;
     }
         
-
+    function handleRate(rate: number) {
+        axios.post(urlRatings, { rating: rate, movieId: id }).then(() => {
+            Swal.fire({ icon: 'success', title: 'Rating received' });
+        })
+    }
 
     return(
         movie ? <div>
@@ -65,6 +71,11 @@ export default function MovieDetails(){
                     to={`/movies/filter?genreId=${genre.id}`}
                 >{genre.name}</Link>
                 )} | {movie.releaseDate.toDateString()}
+                    | Your vote: <Ratings maximumValue={5} selectedValue={movie.userVote}
+                onChange={handleRate} /> | Average Vote: {movie.averageVote}
+                
+
+
 
             <div style={{display: 'flex' , marginTop: '1rem'}}>
                 <span style={{display: 'inline-block', marginRight: '1rem'}}>

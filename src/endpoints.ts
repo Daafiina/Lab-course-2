@@ -5,3 +5,4 @@ export const urlActors = `${baseURL}/actors`;
 export const urlMovieTheatres = `${baseURL}/movietheatres`;
 export const urlMovies= `${baseURL}/movies`;
 export const urlAccounts = `${baseURL}/accounts`;
+export const urlRatings =`${baseURL}/ratings`;
