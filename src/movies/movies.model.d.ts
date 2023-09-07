@@ -33,7 +33,7 @@ export interface movieCreationDTO{
 export interface landingPageDTO{
     [x: string]: any;
     inTheatres?:movieDTO[];//? e bon mu kon undifined array,se me 0 element i bje qe smundet me pas asni ele ne array
-    upComingMoives?:movieDTO[]
+    upComingMovies?:movieDTO[]
 }
 
 export interface moviesPostGetDTO{

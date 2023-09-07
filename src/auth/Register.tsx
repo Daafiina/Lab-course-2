@@ -2,7 +2,7 @@ import axios from "axios";
 import { authenticationResponse, userCredentials } from "./auth.models";
 import { urlAccounts } from "../endpoints";
 import { useContext, useState } from "react";
-import DisplayErrors from "../utilis/DisplayErrors";
+ import DisplayErrors from "../utilis/DisplayErrors";
 import AuthForm from "./AuthForm";
 import { getClaims,saveToken } from "./handleJWT";
 import AuthenticationContext from "./AuthenticationContext";
@@ -23,16 +23,18 @@ export default function Register(){
             saveToken(response.data);
             update(getClaims());
             history.push('/');
+            console.log("credentials" + credentials);
+
         }
         catch(error: any){
-            setErrors(error.response.data);
-        }
+            console.error("Registration Error:", error.response);
+            setErrors(error.response.data);        }
     }
 
     return(
         <>
             <h3>Register</h3>
-            <DisplayErrors errors={errors} />
+         <DisplayErrors errors={errors} /> 
             <AuthForm
             model={{email:'', password:'' }}
             onSubmit={async values => await register(values)}
