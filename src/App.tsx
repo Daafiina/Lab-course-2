@@ -24,6 +24,7 @@ function App() {
 function isAdmin(){
   return claims.findIndex(claim => claim.name === 'role' && claim.value === 'admin') > -1;
 }
+console.log("Claims: ", claims);
 
  
   return(
@@ -31,7 +32,22 @@ function isAdmin(){
     <AuthenticationContext.Provider value={{claims, update: setClaims}}>
     <Menu/>
     <div className="container">
-
+    <Switch>
+  {routes.map(route => 
+    <Route
+      key={route.path}
+      path={route.path}
+      exact={route.exact}
+    >
+      {(!route.isAdmin || (route.isAdmin && isAdmin())) ? 
+        <route.component /> :
+        <>
+          You are not allowed to see this page
+        </>
+      }
+    </Route>
+  )}
+</Switch> 
        </div>
        
     <footer className="bd-footer py-5 mt-5 bg-dark text-white">
@@ -39,6 +55,7 @@ function isAdmin(){
     <div className="row">
       <div className="col-lg-4">
         <h5>About Us</h5>
+        
         <p>We are BMM Movies, your source for the latest movie information and news.</p>
       </div>
       <div className="col-lg-4">

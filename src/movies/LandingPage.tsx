@@ -33,6 +33,8 @@
 
     return (
       <AlertContext.Provider value={() => {}}>
+
+        
         <div className="containerOfButton" style={{display:'flex', justifyContent:'space-between', marginTop:'14px', marginLeft:'3REM', marginRight:'3REM'}}>
           <h1
             style={{

@@ -15,81 +15,7 @@ export default function Menu(){
 
     return(
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                <NavLink className="navbar-brand" to="/">BMM</NavLink>
-                <div className="collapse navbar-collapse"
-                    style={{display: 'flex', justifyContent: 'space-between'}}
-                >
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                            <NavLink className="nav-link" to="/movies/filter">
-                                Filter Movies
-                            </NavLink>
-                        </li>
-
-                        <Authorized
-                        role="admin"
-                        authorized={<>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/genres">
-                                Genres
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/actors">
-                                Actors
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/movietheaters">
-                                Movie Theaters
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/movies/create">
-                                Create a Movie
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/users">
-                                Users
-                            </NavLink>
-                        </li>
-
-                        </>}
-                        />    
-                    </ul>
-              <nav/>
-                    <div className="d-flex">
-                            <Authorized
-                                authorized={<>
-                                    <span className="nav-link">Hi, {getUserEmail()}</span>
-                                    <Button 
-                                    onClick={() =>{
-                                        logout();
-                                        update([]);
-                                    }}
-                                    className="nav-link btn btn-link"
-                                    >Log out</Button>
-                                </>}
-                                notAuthorized={<>
-                                    <Link to="/register" 
-                                    className="nav-link btn btn-link">Register</Link>
-                                    <Link to="/login" 
-                                    className="nav-link btn btn-link">Login</Link>
-                                </>}
-                            />
-                        </div>  
-                                
-                </div>
-
-            </div>
-          
+       
             
       
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -124,7 +50,7 @@ export default function Menu(){
                 </NavLink>
         </li>
         <Authorized
-          role=""
+          role="admin"
           authorized={
             <>
               <li className="nav-item">
@@ -199,6 +125,5 @@ export default function Menu(){
        
   
 
-</nav>
 </nav>
 )}

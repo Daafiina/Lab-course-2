@@ -95,16 +95,14 @@ export default function MovieDetails(){
                     className="btn btn-primary btn-sm rounded-pill"
                     to={`/movies/filter?genreId=${genre.id}`}
                 >{genre.name}</Link>
-                )} | {movie.releaseDate.toDateString()}
-                    | Your vote: <Ratings maximumValue={5} selectedValue={movie.userVote}
+                )} 
+                     Your vote: <Ratings maximumValue={5} selectedValue={movie.userVote}
                 onChange={handleRate} /> | Average Vote: {movie.averageVote}
                 
 
                 
 
 
-        movie ? <div style={{marginTop:'1REM'}}>
-            <h2 style={{fontSize:"2.3rem",padding:"5px" , boxShadow:'0px 1px 15px 5px lightgrey', display:'inline'}}>{movie.title} ({movie.releaseDate.getFullYear()})</h2>
          
         <div style={{display:'flex'}}>
             <div style={{display: 'flex' , marginTop: '1rem'}}>
@@ -156,7 +154,7 @@ export default function MovieDetails(){
                 <Map coordinates={transformCoordinates()} readonly={true} />
             </div> : null} 
 
-            </div>
+    
 
         </div> : <Loading />
         

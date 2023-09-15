@@ -15,7 +15,6 @@ export default function MoviesList(props: moviesListProps) {
   </GenericList>;
   
 }
-console.log("MoviesList"+GenericList)
 
 interface moviesListProps {
   movies?: movieDTO[];

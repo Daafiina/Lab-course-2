@@ -34,25 +34,37 @@ export default function IndividualMovie(props: movieDTO){
             <div className={css.moviecontainer}>
                 <Link to={buildLink()} className={css.movielink}>
                     <img alt="Poster" src={props.poster} className={css.movieposter} />
-                    <p className={css.movietitle}>{props.title} <br/>  
-                    <button style={{border:"none", backgroundColor:'none'}}>Add to wishlist <i className="bi bi-heart"></i></button></p>
+                    <p className={css.movietitle}>{props.title} <br/>
+                    
+                    <Authorized
+  role="admin"
+  authorized={
+    <>
+      <div className="butonat">
+        <Link style={{marginRight: '1rem'}} className="btn btn-info"
+              to={`/movies/edit/${props.id}`}
+        >Edit</Link>
+        <Button
+          onClick={() => customConfirm(() => deleteMovie())}
+          className="btn btn-danger"
+        >Delete</Button>
+      </div>
+    </>
+  }
+  notAuthorized={
+    <>
+      <button style={{border:"none", backgroundColor:'none'}}>Add to wishlist <i className="bi bi-heart"></i></button>
+    </>
+  }
+/>
+
+                
+                   </p>
                 </Link>     
+                
             </div>
 
-                <Authorized
-                    role="admin"
-                    authorized={<>
-                    <div>
-                    <Link style={{marginRight: '1rem'}} className="btn btn-info"
-                        to={`/movies/edit/${props.id}`}
-                    >Edit</Link>
-                    <Button
-                    onClick={() => customConfirm(() => deleteMovie())}
-                    className="btn btn-danger"
-                    >Delete</Button>
-                </div>
-                    </>}
-                />  
+               
             
         </div>
     )
