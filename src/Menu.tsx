@@ -8,6 +8,9 @@ import { useContext } from "react";
 export default function Menu(){
 
     const {update, claims} = useContext(AuthenticationContext);
+    const isAuthenticated = claims && claims.length > 0;
+
+    const isAdmin = claims?.some(claim => claim.name === 'role' && claim.value === 'admin');
 
     function getUserEmail(): string{
         return claims.filter(x => x.name === "email")[0]?.value;
@@ -15,44 +18,71 @@ export default function Menu(){
 
     return(
 
-       
-            
-      
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
       <NavLink className="navbar-brand" to="/">BMM</NavLink>
-      <button
-        type="button"
-        className="navbar-toggler"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-      <span className="navbar-toggler-icon"></span>
-      </button>
+                <button
+                  type="button"
+                  className="navbar-toggler"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                <span className="navbar-toggler-icon"></span>
+                </button>
+
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/movies">
-            All Movies
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/movies/filter">
-           Filter Movies
-          </NavLink>
-        </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/movies">
+                All Movies
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/movies/filter">
+              Filter Movies
+              </NavLink>
+            </li>
+
+
+            {!isAdmin && isAuthenticated &&
+            <>
         <li className="">
-              <NavLink className="nav-link" to="/wishlist">
-                View Wishlist
-                </NavLink>
+          <NavLink className="nav-link" to="/wishlist">
+            View Wishlist
+          </NavLink>
         </li>
+         <li className="nav-item">
+         <NavLink className="nav-link" to="/actors">
+           Actors
+         </NavLink>
+       </li>
+       <li className="nav-item">
+                <NavLink className="nav-link" to="/books">
+                    Books
+                </NavLink>
+              </li>
+       </>
+      }
+
+
+
         <Authorized
           role="admin"
           authorized={
             <>
+               <li className="nav-item">
+                <NavLink className="nav-link" to="/users">
+                    Users
+                </NavLink>
+              </li>
+               <li className="nav-item">
+                <NavLink className="nav-link" to="/Admin">
+                    Admin Dashboard
+                </NavLink>
+              </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/genres">
                   Genres
@@ -78,11 +108,7 @@ export default function Menu(){
                     Books
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/Admin">
-                    Admin Dashboard
-                </NavLink>
-              </li>
+           
             </>
             
           }

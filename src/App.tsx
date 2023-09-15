@@ -16,7 +16,7 @@ configureInterceptor();
 function App() {
   
   const [claims, setClaims] =useState<claim[]>([]);
-
+  const isAuthenticated = claims && claims.length > 0;
   useEffect(() =>{
     setClaims(getClaims())
   }, [])
@@ -39,11 +39,13 @@ console.log("Claims: ", claims);
       path={route.path}
       exact={route.exact}
     >
-      {(!route.isAdmin || (route.isAdmin && isAdmin())) ? 
+      {(!route.isAdmin || (route.isAdmin && isAdmin()) ) ? 
         <route.component /> :
         <>
-          You are not allowed to see this page
-        </>
+      <div className="alert alert-danger d-flex align-items-center" role="alert" style={{marginTop:'1REM'}}>
+      <i className="bi bi-exclamation-diamond-fill" style={{marginRight:'0.5REM', fontSize:'25px'}}></i>   <h6>You are not allowed to access this page</h6>
+        </div>
+      </>
       }
     </Route>
   )}

@@ -38,10 +38,10 @@ export const routes = [
     {path: '/genres/edit/:id(\\d+)',component: EditGenre, isAdmin:true},
 
 
-    {path:'/books/create', component: CreateBooks},
-    {path:'/books', component: indexBook, isAdmin:true},
+    {path:'/books/create', component: CreateBooks, isAdmin:true},
+    {path:'/books', component: indexBook    },
 
-    {path: '/actors',component: IndexActors, exact: true,isAdmin:true},
+    {path: '/actors',component: IndexActors, exact: true},
     {path: '/actors/create',component: CreateActor,isAdmin:true},
     {path: '/actors/edit/:id(\\d+)',component: EditActor,isAdmin:true},
     {path: '/actors/:id(\\d+)', component: ActorDetails},
