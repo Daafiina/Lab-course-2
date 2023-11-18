@@ -9,6 +9,6 @@ export interface booksDTO{
 export interface bookCreationDTO{
     bookName:string;
     author:string;
-    publishedDate:Date;
+    publishedDate?:Date;
     bookGenre:string
 }

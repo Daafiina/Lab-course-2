@@ -3,16 +3,21 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { urlBooks } from '../endpoints';
 import BookForm from './BooksForm';
-import { bookCreationDTO } from './Books.models'; // Assuming you have a bookCreationDTO model
+import { bookCreationDTO } from './Books.models';
 import DisplayErrors from '../utilis/DisplayErrors';
 
 export default function CreateBooks() {
     const history = useHistory();
     const [errors, setErrors] = useState<string[]>([]);
-    console.log("hini")
+
     async function create(book: bookCreationDTO) {
         try {
-            await axios.post(urlBooks, book);
+            console.log('Creating book:', book);
+
+            await axios.post(urlBooks, book, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+
             history.push('/books');
         } catch (error) {
             console.log(error);
@@ -25,14 +30,10 @@ export default function CreateBooks() {
             <h3>Create Book</h3>
             <DisplayErrors errors={errors} />
             <BookForm
-                model={{
-                    bookName: '',
-                    author: '',
-                    publishedDate: new Date(), // Set the default date as needed
-                    bookGenre: ''
-                }}
-                onSubmit={async value => {
-                    await create(value);
+                model={{ bookName: '', author: '', publishedDate: new Date(), bookGenre: '' }}
+                onSubmit={async (values) => {
+                    console.log('Submitting form with values:', values);
+                    await create(values);
                 }}
             />
         </>

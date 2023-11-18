@@ -13,19 +13,19 @@ export default function BookForm(props: BookFormProps) {
                 initialValues={props.model}
                 onSubmit={props.onSubmit}
                 validationSchema={Yup.object({
-                    BookName: Yup.string().required('Book Name is required').max(50, 'Max length is 50 characters'),
-                    Author: Yup.string().required('Author is required').max(50, 'Max length is 50 characters'),
-                    BookGenre: Yup.string().required('Genre is required').max(50, 'Max length is 50 characters'),
+                    bookName: Yup.string().required('Book Name is required').max(50, 'Max length is 50 characters'),
+                    author: Yup.string().required('Author is required').max(50, 'Max length is 50 characters'),
+                    bookGenre: Yup.string().required('Genre is required').max(50, 'Max length is 50 characters'),
                 })}
+                
             >
                 {(formikProps) => (
                     <Form>
                         <TextField field="bookName" displayName="Book Name" />
                         <TextField field="author" displayName="Author" />
                        <DateField displayName="Published Date" field="publishedDate" /> 
-
                         <TextField field="bookGenre" displayName="Genre" />
-                        <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
+                        <Button disabled={formikProps.isSubmitting} type="submit">Save changes</Button>
                         <Link className="btn btn-secondary" to="/books">Cancel</Link>
                     </Form>
                 )}

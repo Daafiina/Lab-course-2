@@ -1,4 +1,4 @@
-import Button from "../utilis/Button";
+    import Button from "../utilis/Button";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
@@ -13,9 +13,9 @@ export default function BookForm(props: BookFormProps) {
                 initialValues={props.model}
                 onSubmit={props.onSubmit}
                 validationSchema={Yup.object({
-                    BookName: Yup.string().required('Book Name is required').max(50, 'Max length is 50 characters'),
-                    Author: Yup.string().required('Author is required').max(50, 'Max length is 50 characters'),
-                    BookGenre: Yup.string().required('Genre is required').max(50, 'Max length is 50 characters'),
+                    bookName: Yup.string().required('Book Name is required').max(50, 'Max length is 50 characters'),
+                    author: Yup.string().required('Author is required').max(50, 'Max length is 50 characters'),
+                    bookGenre: Yup.string().required('Genre is required').max(50, 'Max length is 50 characters'),
                 })}
             >
                 {(formikProps) => (

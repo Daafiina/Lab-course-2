@@ -1,6 +1,7 @@
 import { format } from "path";
 import { actorCreationDTO } from "../actors/actors.model";
 import { movieCreationDTO } from "../movies/movies.model";
+import { bookCreationDTO } from '../Books/Books.models';
 
 export function convertActorToFormData(actor:actorCreationDTO):FormData{
     const formData = new FormData();
@@ -18,6 +19,28 @@ export function convertActorToFormData(actor:actorCreationDTO):FormData{
     if (actor.picture){
         formData.append('picture', actor.picture);
     }
+
+    return formData;
+}
+
+export function convertBookToFormData(book: bookCreationDTO): FormData {
+    const formData = new FormData();
+if(book.bookName){
+    formData.append('bookName', book.bookName);
+
+}
+    if(book.author){
+    formData.append('author', book.author);
+}
+    if(book.publishedDate){
+    formData.append('publishedDate', formatDate(book.publishedDate)); 
+}
+
+    if (book.bookGenre) {
+        formData.append('bookGenre', book.bookGenre);
+    }
+
+    // Add more fields as needed
 
     return formData;
 }
