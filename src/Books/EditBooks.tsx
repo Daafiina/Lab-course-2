@@ -25,6 +25,15 @@ export default function EditBooks() {
 
   async function edit(bookToEdit: bookCreationDTO) {
     try {
+        // Assuming your backend expects FormData for file uploads
+    const formData = new FormData();
+    formData.append('bookName', bookToEdit.bookName);
+    formData.append('author', bookToEdit.author);
+    formData.append('publishedDate', bookToEdit.publishedDate?.toISOString() || '');
+    formData.append('bookGenre', bookToEdit.bookGenre);
+    if (bookToEdit.picture) {
+      formData.append('picture', bookToEdit.picture);
+    }
       await axios.put(`${urlBooks}/${id}`, bookToEdit);
       history.push('/books');
     } catch (error) {

@@ -10,5 +10,7 @@ export interface bookCreationDTO{
     bookName:string;
     author:string;
     publishedDate?:Date;
-    bookGenre:string
+    bookGenre:string;
+    picture?: File;
+
 }

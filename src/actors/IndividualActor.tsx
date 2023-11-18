@@ -1,33 +1,45 @@
 import { Link } from "react-router-dom";
 import Button from "../utilis/Button";
-import customConfirm from "../utilis/customConfirm";
 import css from "./IndividualActor.module.css";
 import axios from "axios";
-import { urlMovies } from "../endpoints";
-import AlertContext from "../utilis/AlertContext";
-import {useContext, useState} from "react";
-import Authorized from "../auth/Authorized";
 import { actorDTO } from "./actors.model";
 
-export default function IndividualActor(props: actorDTO){
-    const builddLink = () =>`/actors/${props.id}`
-    const customAlert=useContext(AlertContext);
-    const [actor, setActor] = useState<actorDTO>();
-   
-        const formattedDateOfBirth = new Date(props.dateOfBirth).toLocaleDateString('en-US', {
-          year: 'numeric',
-         
-        });
+export default function IndividualActor(props: actorDTO) {
+  const buildLink = () => `/actors/${props.id}`;
+  const editLink = `/actors/${props.id}/edit`; // Edit link
 
-return(
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this actor?")) {
+      try {
+        await axios.delete(`https://localhost:7194/api/actors/${props.id}`);
+        console.log("Actor deleted successfully");
+        // You can also handle a successful deletion, e.g., show a message or trigger a refresh
+      } catch (error) {
+        console.error("Error deleting actor", error);
+        // Handle error, e.g., show an error message
+      }
+    }
+  };
+
+  return (
     <div className={css.div}>
-    <div className={css.actorcontainer}>
-      <Link to={builddLink()} className={css.actorlink}>
+      <div className={css.actorcontainer}>
+        <Link to={buildLink()} className={css.actorlink}>
           <img alt="Actor" src={props.picture} className={css.actorposter} />
-          <p className={css.actorName}>{props.name} ({formattedDateOfBirth})</p>
-          
-      </Link>
+          <p className={css.actorName}>{props.name}</p>
+        </Link>
+
+        {/* Edit button */}
+        <Link to={editLink} style={{marginRight: '1rem'}} className="btn btn-info">
+            Edit
+        </Link>
+
+        {/* Delete button */}
+        <Button            className="btn btn-danger"
+ onClick={handleDelete}>
+          Delete
+        </Button>
       </div>
-      </div>
-)
+    </div>
+  );
 }
