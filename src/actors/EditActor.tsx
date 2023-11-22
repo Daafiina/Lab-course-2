@@ -17,6 +17,7 @@ export default function EditActor(){
     }
 
     return (
+        <div>
         <EditEntity<actorCreationDTO, actorDTO> 
          url={urlActors} indexURL="/actors" entityName="Actor" 
          transformFormData={convertActorToFormData}
@@ -29,6 +30,7 @@ export default function EditActor(){
                 />
             }
         </EditEntity>
+        </div>
     )
 }
 

@@ -15,7 +15,7 @@ export default function FilterMovies(){
             title:'',
             genreId:0,
             upcomingReleases:false,
-            inTheatres:false,
+            inTheaters:false,
             page: 1,
             recordsPerPage: 10
     }
@@ -48,12 +48,12 @@ export default function FilterMovies(){
         }
 
         if(query.get('inTheaters')){
-            initialValues.inTheatres=true;
+            initialValues.inTheaters=true;
         }
 
-        if(query.get('page')){
-            initialValues.page=parseInt(query.get('page')!, 10);
-        }
+    if (query.get('page')) {
+        initialValues.page = parseInt(query.get('page')!, 10);
+    }
 
         searchMovies(initialValues);
     }, [])
@@ -70,26 +70,27 @@ export default function FilterMovies(){
 
     function modifyUrl(values: filterMoviesForm){
         const queryStrings: string[] = [];
-
+    
         if(values.title){
             queryStrings.push(`title=${values.title}`);
         }
-
-        if(values.genreId !== 0){
+    
+        if(values.genreId){
             queryStrings.push(`genreId=${values.genreId}`);
         }
-
+    
         if(values.upcomingReleases){
             queryStrings.push(`upcomingReleases=${values.upcomingReleases}`);
         }
-
-        if(values.inTheatres){
-            queryStrings.push(`inTheatres=${values.inTheatres}`);
+    
+        if(values.inTheaters){
+            queryStrings.push(`InTheaters=${values.inTheaters}`);
         }
-
+    
         queryStrings.push(`page=${values.page}`);
         history.push(`/movies/filter?${queryStrings.join('&')}`);
     }
+    
 
 
     return(
@@ -113,7 +114,7 @@ export default function FilterMovies(){
                         </div>
                         <div className="col-auto">
                             <select className="form-select"
-                            {...formikProps.getFieldProps("generId")}>
+                            {...formikProps.getFieldProps("genreId")}>
                                 <option value="0">---Choose a genre---</option>
                                 {genres.map(genre=><option key={genre.id} value={genre.id}>{genre.name}</option>)}
                             </select>
@@ -129,9 +130,9 @@ export default function FilterMovies(){
                             <div className="col-auto">
                             <div className="form-check">
                                 <Field className="form-check-input" 
-                                id="inTheatres" name="inTheatres" 
+                                id="inTheaters" name="inTheaters" 
                                 type="checkbox"/>
-                                <label className="form-check-label" htmlFor="inTheatres">In Theatres</label>
+                                <label className="form-check-label" htmlFor="inTheaters">In Theatres</label>
                             </div>
                         </div>
                         <div className="col-auto">
@@ -143,8 +144,7 @@ export default function FilterMovies(){
                                 formikProps.setValues(initialValues);
                                     searchMovies(initialValues);
                                 }}
-                                >Clear</Button>
-
+                                >Clear</Button> 
                         </div>
                     </div>
                 
@@ -170,7 +170,7 @@ interface filterMoviesForm{
     title:string;
     genreId:number;
     upcomingReleases:boolean;
-    inTheatres:boolean;
+    inTheaters:boolean;
     page: number;
     recordsPerPage: number;
 }

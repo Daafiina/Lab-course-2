@@ -6,17 +6,15 @@ import { actorDTO } from "./actors.model";
 
 export default function IndividualActor(props: actorDTO) {
   const buildLink = () => `/actors/${props.id}`;
-  const editLink = `/actors/${props.id}/edit`; // Edit link
+  const editLink = `/actors/edit/${props.id}`; // Edit link
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this actor?")) {
       try {
         await axios.delete(`https://localhost:7194/api/actors/${props.id}`);
         console.log("Actor deleted successfully");
-        // You can also handle a successful deletion, e.g., show a message or trigger a refresh
       } catch (error) {
         console.error("Error deleting actor", error);
-        // Handle error, e.g., show an error message
       }
     }
   };
